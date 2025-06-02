@@ -5,7 +5,9 @@ import type { Env } from "@/app/types/cloudflare-env";
 export const runtime = "edge";
 
 export async function POST(request: NextRequest) {
-  const ai = getRequestContext().env.AI;
+  const context = getRequestContext();
+  const { env } = context; 
+  const ai = env.AI
 
   const body = await request.json();
 
