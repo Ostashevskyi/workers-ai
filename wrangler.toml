@@ -4,7 +4,3 @@ pages_build_output_dir = ".vercel/output/static"
 
 [ai]
 binding = "AI"
-
-[vars]
-CLOUDFLARE_ACCOUNT_ID = "b98ff7eba201ab568a2cca72596285a2"
-CLOUDFLARE_API_TOKEN = "X063ZNLtDn7xGikkC_2ch8o2KyUgb7S5aadBhE6H"
