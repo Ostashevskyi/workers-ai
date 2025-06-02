@@ -1,0 +1,22 @@
+import type { NextRequest } from "next/server";
+import { getRequestContext } from "@cloudflare/next-on-pages";
+import type { Env } from "@/app/types/cloudflare-env";
+
+export const runtime = "edge";
+
+export async function POST(request: NextRequest) {
+  const ai = getRequestContext().env.AI;
+
+  const body = await request.json();
+
+  let { prompt, model } = body as {prompt: string, model?: string};
+  if (!model) model = "@cf/black-forest-labs/flux-1-schnell";
+
+  const inputs = { prompt };
+  const res = await ai.run(model, inputs);
+  return new Response(`data:image/png;base64,${res.image}`, {
+    headers: {
+      "Content-Type": "image/png",
+    },
+  });
+}
